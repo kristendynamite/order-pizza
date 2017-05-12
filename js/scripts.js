@@ -1,3 +1,5 @@
+//business logic
+
 function Pizza(size, toppings) {
   this.size = size;
   this.toppings = toppings;
@@ -5,13 +7,12 @@ function Pizza(size, toppings) {
 
 }
 
-// Pizza.prototype.ToppingsArray = function() {
-// 	this.toppingsArray.push(this.toppings);
-  // }
-  // return this.toppingsArray;
-// }
+Pizza.prototype.sizePrice = function() {
+  return parseInt(this.size);
+}
 
-Pizza.prototype.sumToppings = function() {
+
+Pizza.prototype.sumToppings = function(){
   var result = 0;
   for(var i = 0; i < this.toppingsArray.length; i++) {
     result += parseInt(this.toppingsArray[i]);
@@ -19,12 +20,9 @@ Pizza.prototype.sumToppings = function() {
   return result;
 }
 
-Pizza.prototype.sizePrice = function() {
-  return parseInt(this.size);
-
 // Pizza.prototype.fullPrice = function() {
 //   return parseInt(this.size) + this.toppingsTotal;
-}
+// }
 // parseInt(this.toppingsTotal) +
 
 function resetFields() {
@@ -40,19 +38,18 @@ $(document).ready(function() {
 
     var size = $("#size").val();
     var toppingsArray = [];
+    var toppings;
 
     $("input:checkbox[name=tops]:checked").each(function(){
-      var toppings = $("#this").val();
+      var toppings = $(this).val();
       toppingsArray.push(toppings);
-    });
+      return toppingsArray;
+  });
 
-    var myPizza = new Pizza(size, toppings);
-
+  var myPizza = new Pizza(size, toppings);
+  $("ul#price").append("$" + (myPizza.sizePrice() + myPizza.sumToppings()));
 
     // $("ul#price").append("$" + myPizza.sizePrice() + myPizza.sumToppings() + ".00");
-
-    $("ul#price").append(myPizza.sizePrice());
-    alert (toppingsArray);
 
     $(".output").show();
 

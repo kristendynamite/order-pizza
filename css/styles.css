@@ -9,7 +9,7 @@ body {
 }
 
 .container {
-  background-color: white;
+  background: rgba(249, 232, 236, 0.8);
   padding: 15px;
   margin-top: 40px;
 }
@@ -34,4 +34,26 @@ h1 {
 p {
   font-family: 'Pompiere', cursive;
   font-size: 20px;
+}
+
+#pizzaForm {
+  font-family: 'Pompiere', cursive;
+  font-size: 20px;
+}
+
+.btn {
+  font-size: 20px;
+  font-weight: bold;
+  border-width: thick;
+}
+
+#price {
+  font-size: 20px;
+  font-family: 'Shrikhand';
+}
+
+#pizza-gif {
+  width: 60%;
+  height: 60%;
+  border-width: thin;
 }
