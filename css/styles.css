@@ -45,11 +45,12 @@ p {
   font-size: 20px;
   font-weight: bold;
   border-width: thick;
+  margin-top: 10px;
 }
 
 #price {
-  font-size: 20px;
-  font-family: 'Shrikhand';
+  font-size: 40px;
+  font-family: 'Pompiere';
 }
 
 #pizza-gif {

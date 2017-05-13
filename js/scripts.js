@@ -1,55 +1,43 @@
-//business logic
+////\\BUSINESS LOGIC||/////
 
-function Pizza(size, toppings) {
+////\\CONSTRUCTOR\\/////
+function Pizza(size, toppings, special) {
   this.size = size;
   this.toppings = toppings;
-  this.toppingsArray = [];
+  this.special = special;
 
 }
+
+////\\PROTOTYPES\\/////
 
 Pizza.prototype.sizePrice = function() {
   return parseInt(this.size);
 }
 
-
-Pizza.prototype.sumToppings = function(){
-  var result = 0;
-  for(var i = 0; i < this.toppingsArray.length; i++) {
-    result += parseInt(this.toppingsArray[i]);
-  }
-  return result;
+Pizza.prototype.specialPrice = function() {
+  return parseInt(this.special);
 }
 
-// Pizza.prototype.fullPrice = function() {
-//   return parseInt(this.size) + this.toppingsTotal;
-// }
-// parseInt(this.toppingsTotal) +
-
-function resetFields() {
-    $("input#size").val("");
-    $("input#toppings").val("");
+Pizza.prototype.orderTotal = function() {
+  return parseInt(this.size) + parseInt(this.special) + this.toppings.length;
 }
 
-//// Front End Logic ////
+//// \\ Front End Logic \\  ////
 $(document).ready(function() {
 
   $("form#pizzaForm").submit(function(event) {
     event.preventDefault();
 
     var size = $("#size").val();
-    var toppingsArray = [];
-    var toppings;
+    var special = $("#special").val();
+    var toppings = []; $("input:checkbox[name=tops]:checked").each(function() {
+      var chosenTopping = $(this).val();
+      toppings.push(chosenTopping);
+    });
 
-    $("input:checkbox[name=tops]:checked").each(function(){
-      var toppings = $(this).val();
-      toppingsArray.push(toppings);
-      return toppingsArray;
-  });
+    var myPizza = new Pizza(size, toppings, special);
 
-  var myPizza = new Pizza(size, toppings);
-  $("ul#price").append("$" + (myPizza.sizePrice() + myPizza.sumToppings()));
-
-    // $("ul#price").append("$" + myPizza.sizePrice() + myPizza.sumToppings() + ".00");
+    $("ul#price").append("Your toppings: " + "<br>" + toppings + "</br>" + "<br>" + "Your price $" + (myPizza.orderTotal() + "</br>" ));
 
     $(".output").show();
 
